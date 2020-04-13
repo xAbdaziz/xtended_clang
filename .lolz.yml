@@ -1,0 +1,20 @@
+--- 
+kind: pipeline
+name: LolzClang
+steps: 
+  - 
+    commands:
+      - "apt-get -y update && apt-get -y upgrade && apt-get -y install bc bison build-essential ca-certificates ccache clang cmake curl file flex gcc g++ git lld libelf-dev libssl-dev make ninja-build patchelf python3 texinfo u-boot-tools zlib1g-dev"
+      - "bash build_lolz.sh"
+    environment: 
+      GITHUB_TOKEN: 
+        from_secret: github_token
+      TG_BOT_TOKEN: 
+        from_secret: tg_bot_token
+      TG_CHATID: 
+        from_secret: tg_chatid
+    image: "ubuntu:18.04"
+    name: clang_builder
+    trigger: 
+      branch: 
+        - master
