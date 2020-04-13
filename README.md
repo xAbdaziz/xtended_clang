@@ -1,6 +1,6 @@
 # LOLZ CLANG BUILDER
 
-[![Build Status](https://cloud.drone.io/api/badges/Jprimero15/lolz-clang-build/status.svg?ref=refs/heads/master)](https://cloud.drone.io/Jprimero15/lolz-clang-build)  ![Lint checks](https://github.com/Jprimero15/lolz-clang-build/workflows/Lint%20checks/badge.svg?branch=master)
+[![Build Status](https://cloud.drone.io/api/badges/Jprimero15/lolz-clang-build/status.svg?ref=refs/heads/rebase)](https://cloud.drone.io/Jprimero15/lolz-clang-build)  ![Lint checks](https://github.com/Jprimero15/lolz-clang-build/workflows/Lint%20checks/badge.svg?branch=rebase)
 
 
 # Toolchain build scripts
