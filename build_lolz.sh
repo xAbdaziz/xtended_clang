@@ -4,6 +4,8 @@ set -euo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
+LOLZ_DIR="$(pwd)"
+
 # Github info
 git config --global user.name "Jprimero15"
 git config --global user.email "jprimero155@gmail.com"
@@ -54,7 +56,7 @@ for bin in $(find install -mindepth 2 -maxdepth 3 -type f -exec file {} \; | gre
 	# Remove last character from file output (':')
 	bin="${bin: : -1}"
 	echo "$bin"
-	patchelf --set-rpath "/drone/src/install/lib" "$bin"
+	patchelf --set-rpath "$LOLZ_DIR/install/lib" "$bin"
 done
 
 # Release Info
