@@ -1,3 +1,8 @@
+# LOLZ CLANG BUILDER
+
+[![Build Status](https://cloud.drone.io/api/badges/Jprimero15/lolz-clang-build/status.svg?ref=refs/heads/master)](https://cloud.drone.io/Jprimero15/lolz-clang-build)  ![Lint checks](https://github.com/Jprimero15/lolz-clang-build/workflows/Lint%20checks/badge.svg?branch=master)
+
+
 # Toolchain build scripts
 
 There are times where a tip of tree LLVM build will have some issue fixed and it isn't available to you, maybe because it isn't in a release or it isn't available through your distribution's package management system. At that point, to get that fix, LLVM needs to be compiled, which sounds scary but is [rather simple](https://llvm.org/docs/GettingStarted.html). The `build-llvm.py` script takes it a step farther by trying to optimize both LLVM's build time by:
