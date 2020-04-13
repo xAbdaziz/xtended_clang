@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+
 # Github info
 git config --global user.name "Jprimero15"
 git config --global user.email "jprimero155@gmail.com"
@@ -21,22 +25,15 @@ builder_commit="$(git rev-parse HEAD)"
 # Send a notificaton to TG
 tg_post_msg "<b>LOLZ Clang Compilation Started</b>%0A<b>Date: </b><code>$lolz_friendly_date</code>%0A<b>CLANG Script Commit: </b><code>$builder_commit</code>%0A"
 
-# Clone LLVM and apply fixup patches *before* building
-tg_post_msg "<code>Applying Fixes Patch on LLVM...</code>"
-git clone --depth 1 "https://github.com/llvm/llvm-project"
-pushd llvm-project
-git am -3 ../patches/*
-popd
-
 # Build LLVM
 tg_post_msg "<code>Building LLVM...</code>"
 ./build-llvm.py \
 	--clang-vendor "LOLZ" \
 	--targets "ARM;AArch64;X86" \
 	--shallow-clone \
-	--incremental \
+	--no-update \
 	--pgo \
-	--no-update
+	--lto full
 
 # Build binutils
 tg_post_msg "<code>Building Binutils...</code>"
@@ -64,10 +61,9 @@ done
 
 # Release Info
 pushd llvm-project
-llvm_commit="$(git rev-parse HEAD~1)"
-short_llvm_commit="$(cut -c-8 <<< "$llvm_commit")"
-popd
+llvm_commit="$(git rev-parse HEAD)"
 llvm_commit_url="https://github.com/llvm/llvm-project/commit/$llvm_commit"
+popd
 binutils_ver="$(ls | grep "^binutils-" | sed "s/binutils-//g")"
 clang_version="$(install/bin/clang --version | head -n1 | cut -d' ' -f4)"
 
@@ -75,9 +71,8 @@ clang_version="$(install/bin/clang --version | head -n1 | cut -d' ' -f4)"
 tg_post_msg "<code>Pushing New LOLZ Clang Build to Github Repo...</code>"
 git clone "https://Jprimero15:$GITHUB_TOKEN@github.com/Jprimero15/lolz_clang.git" lolz_repo
 pushd lolz_repo
-rm -fr *
+rm -fr ./*
 cp -r ../install/* .
-# git checkout README.md # keep this as it's not part of the clang prebuilt itself
 git add .
 git commit -m "Update to $lolz_date Build
 
