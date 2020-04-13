@@ -13,7 +13,7 @@ steps:
         from_secret: tg_bot_token
       TG_CHATID: 
         from_secret: tg_chatid
-    image: "ubuntu:18.04"
+    image: "ubuntu:19.10"
     name: clang_builder
     trigger: 
       branch: 
