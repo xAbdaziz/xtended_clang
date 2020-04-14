@@ -80,6 +80,8 @@ LLVM commit: $llvm_commit_url
 binutils version: $binutils_ver
 Builder commit: https://github.com/Jprimero15/lolz-clang-build/commit/$builder_commit"
 git push
+lolzclang_commit="$(git rev-parse HEAD)"
+lolzclang_commit_url="https://github.com/Jprimero15/lolz_clang/commit/$lolzclang_commit"
 popd
 
-tg_post_msg "<b>LOLZ Clang Compilation Finished</b>%0A<b>Clang Version: </b><code>$clang_version</code>%0A<b>LLVM Commit: </b><code>$llvm_commit_url</code>%0A<b>Binutils Version: </b><code>$binutils_ver</code>"
+tg_post_msg "<b>LOLZ Clang Compilation Finished</b>%0A<b>Clang Version: </b><code>$clang_version</code>%0A<b>LLVM Commit: </b><code>$llvm_commit_url</code>%0A<b>Binutils Version: </b><code>$binutils_ver</code>%0A<b>LOLZ Clang Commit: </b><code>$lolzclang_commit_url</code>"
