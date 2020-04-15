@@ -64,7 +64,7 @@ pushd llvm-project
 llvm_commit="$(git rev-parse HEAD)"
 llvm_commit_url="https://github.com/llvm/llvm-project/commit/$llvm_commit"
 popd
-binutils_ver="$(ls | grep "^binutils-" | sed "s/binutils-//g")"
+binutils_ver="2.34"
 clang_version="$(install/bin/clang --version | head -n1 | cut -d' ' -f4)"
 
 # Push to GitHub LOLZ clang builds repo
