@@ -4,7 +4,8 @@ name: LolzClang
 steps: 
   - 
     commands:
-      - "apt-get -y update && apt-get -y upgrade && apt-get -y install bc bison build-essential ca-certificates ccache clang cmake curl file flex gcc g++ git lld libelf-dev libssl-dev make ninja-build patchelf python3 texinfo u-boot-tools zlib1g-dev"
+      - "pacman -Syyu --noconfirm && pacman -S base-devel bison ccache clang cmake flex git libelf lld ninja openssl python3 uboot-tools bc inetutils patchelf --noconfirm"
+      - "ln -s /usr/bin/core_perl/pod2man /usr/bin/pod2man"
       - "bash build_lolz.sh"
     environment: 
       GITHUB_TOKEN: 
@@ -13,7 +14,7 @@ steps:
         from_secret: tg_bot_token
       TG_CHATID: 
         from_secret: tg_chatid
-    image: "ubuntu:18.04"
+    image: "archlinux/base"
     name: clang_builder
     trigger: 
       branch: 
