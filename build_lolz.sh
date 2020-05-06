@@ -79,6 +79,7 @@ git commit -m "Update to $lolz_date Build
 LLVM commit: $llvm_commit_url
 binutils version: $binutils_ver
 Builder commit: https://github.com/Jprimero15/lolz-clang-build/commit/$builder_commit"
+echo "$clang_version-LOLZClang-$lolz_date" > VERSION
 git push
 lolzclang_commit="$(git rev-parse HEAD)"
 lolzclang_commit_url="https://github.com/Jprimero15/lolz_clang/commit/$lolzclang_commit"
