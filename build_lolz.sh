@@ -12,15 +12,15 @@ git config --global user.email "jprimero155@gmail.com"
 
 # Inlined function to post a message
 export BOT_MSG_URL="https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage"
-function tg_post_msg {
-	curl -s -X POST "$BOT_MSG_URL" -d chat_id="$TG_CHATID" \
-	-d "disable_web_page_preview=true" \
-	-d "parse_mode=html" \
-	-d text="$1"
+function tg_post_msg() {
+    curl -s -X POST "$BOT_MSG_URL" -d chat_id="$TG_CHATID" \
+        -d "disable_web_page_preview=true" \
+        -d "parse_mode=html" \
+        -d text="$1"
 }
 
 # Build Info
-lolz_date="$(date "+%Y%m%d")" # ISO 8601 format
+lolz_date="$(date "+%Y%m%d")"              # ISO 8601 format
 lolz_friendly_date="$(date "+%B %-d, %Y")" # "Month day, year" format
 builder_commit="$(git rev-parse HEAD)"
 
@@ -30,10 +30,10 @@ tg_post_msg "<b>LOLZ Clang Compilation Started</b>%0A<b>Date: </b><code>$lolz_fr
 # Build LLVM
 tg_post_msg "<code>Building LLVM...</code>"
 ./build-llvm.py \
-	--clang-vendor "LOLZ" \
-	--targets "ARM;AArch64;X86" \
-	--shallow-clone \
-	--pgo
+    --clang-vendor "LOLZ" \
+    --targets "ARM;AArch64;X86" \
+    --shallow-clone \
+    --pgo
 
 # Build binutils
 tg_post_msg "<code>Building Binutils...</code>"
@@ -47,16 +47,16 @@ rm -f install/lib/*.a install/lib/*.la
 # Strip remaining products
 tg_post_msg "<code>Stripping Remaining Products...</code>"
 for f in $(find install -type f -exec file {} \; | grep 'not stripped' | awk '{print $1}'); do
-	strip "${f: : -1}"
+    strip "${f::-1}"
 done
 
 # Set executable rpaths so setting LD_LIBRARY_PATH isn't necessary
 tg_post_msg "<code>Setting Library Load Paths for Portability...</code>"
 for bin in $(find install -mindepth 2 -maxdepth 3 -type f -exec file {} \; | grep 'ELF .* interpreter' | awk '{print $1}'); do
-	# Remove last character from file output (':')
-	bin="${bin: : -1}"
-	echo "$bin"
-	patchelf --set-rpath "$LOLZ_DIR/install/lib" "$bin"
+    # Remove last character from file output (':')
+    bin="${bin::-1}"
+    echo "$bin"
+    patchelf --set-rpath "$LOLZ_DIR/install/lib" "$bin"
 done
 
 # Release Info
@@ -73,7 +73,7 @@ git clone "https://Jprimero15:$GITHUB_TOKEN@github.com/Jprimero15/lolz_clang.git
 pushd lolz_repo
 rm -fr ./*
 cp -r ../install/* .
-echo "$clang_version-LOLZClang-$lolz_date" > VERSION
+echo "$clang_version-LOLZClang-$lolz_date" >VERSION
 git add .
 git commit -m "Update to $lolz_date Build
 
