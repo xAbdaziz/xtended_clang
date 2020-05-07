@@ -73,13 +73,13 @@ git clone "https://Jprimero15:$GITHUB_TOKEN@github.com/Jprimero15/lolz_clang.git
 pushd lolz_repo
 rm -fr ./*
 cp -r ../install/* .
+echo "$clang_version-LOLZClang-$lolz_date" > VERSION
 git add .
 git commit -m "Update to $lolz_date Build
 
 LLVM commit: $llvm_commit_url
 binutils version: $binutils_ver
 Builder commit: https://github.com/Jprimero15/lolz-clang-build/commit/$builder_commit"
-echo "$clang_version-LOLZClang-$lolz_date" > VERSION
 git push
 lolzclang_commit="$(git rev-parse HEAD)"
 lolzclang_commit_url="https://github.com/Jprimero15/lolz_clang/commit/$lolzclang_commit"
