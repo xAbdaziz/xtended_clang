@@ -34,10 +34,10 @@ tg_post_msg "<code>Building LLVM...</code>"
 	--targets "ARM;AArch64" \
 	--shallow-clone \
 	--pgo \
-	--lto full \
+	--lto thin \
 	--m haswell \
-    --build-stage1-only \
-    --install-stage1-only
+        --build-stage1-only \
+        --install-stage1-only
 
 # Build binutils
 tg_post_msg "<code>Building Binutils...</code>"
