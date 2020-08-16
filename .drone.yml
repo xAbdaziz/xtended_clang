@@ -1,6 +1,6 @@
 --- 
 kind: pipeline
-name: LolzClang
+name: XtendedClang
 steps: 
   - 
     commands:
@@ -13,7 +13,7 @@ steps:
       - "popd"
       - "rm -rf master.tar.gz my_clang-master"
       - "clang --version"
-      - "bash build_lolz.sh"
+      - "bash build_xtended.sh"
     environment: 
       GITHUB_TOKEN: 
         from_secret: github_token
