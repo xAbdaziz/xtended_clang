@@ -6,12 +6,12 @@ steps:
     commands:
       - "pacman -Syyu --noconfirm && pacman -S base-devel bison ccache cmake flex git libelf lld ninja openssl python3 uboot-tools bc inetutils patchelf wget tar gzip --noconfirm"
       - "ln -s /usr/bin/core_perl/pod2man /usr/bin/pod2man"
-      - "wget https://github.com/xawlw/my_clang/archive/master.tar.gz"
+      - "wget https://github.com/Project-Xtended/prebuilts_clang_host_linux-x86_clang-xtended/archive/master.tar.gz"
       - "tar -zxvf master.tar.gz"
-      - "pushd my_clang-master"
+      - "pushd prebuilts_clang_host_linux-x86_clang-xtended-master"
       - "cp -r * /usr/"
       - "popd"
-      - "rm -rf master.tar.gz my_clang-master"
+      - "rm -rf master.tar.gz prebuilts_clang_host_linux-x86_clang-xtended-master"
       - "clang --version"
       - "bash build_xtended.sh"
     environment: 
