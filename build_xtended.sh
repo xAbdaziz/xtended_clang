@@ -31,7 +31,7 @@ tg_post_msg "<b>Xtended Clang Compilation Started</b>%0A<b>Date: </b><code>$lolz
 tg_post_msg "<code>Building LLVM...</code>"
 ./build-llvm.py \
 	--clang-vendor "Xtended" \
-	--targets "ARM;AArch64" \
+	--targets "ARM;AArch64;X86" \
 	--shallow-clone \
 	--pgo \
 	--lto thin \
@@ -42,7 +42,7 @@ tg_post_msg "<code>Building LLVM...</code>"
 # Build binutils
 tg_post_msg "<code>Building Binutils...</code>"
 ./build-binutils.py \
-    --targets arm aarch64 \
+    --targets arm aarch64 x86_64 \
     -m haswell
 
 # Remove unused products
